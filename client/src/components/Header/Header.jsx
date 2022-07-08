@@ -35,15 +35,17 @@ export default function Header() {
           backgroundColor: "#1976d2",
           margin: 0,
           minHeight: "80px",
-          color: "#fff",
-          textDecoration: "none",
         }}
       >
         <Typography sx={{ minWidth: 100 }}>
-          <Link to="/">Home</Link>
+          <Link to="/" style={{ textDecoration: "none", color: "#fff" }}>
+            Home
+          </Link>
         </Typography>
         <Typography sx={{ minWidth: 100 }}>
-          <Link to="/tasks">Tasks</Link>
+          <Link to="/tasks" style={{ textDecoration: "none", color: "#fff" }}>
+            Tasks
+          </Link>
         </Typography>
         <Tooltip title="Account settings">
           <IconButton
@@ -97,23 +99,36 @@ export default function Header() {
       >
         <MenuItem>
           <Avatar />
-          <Link to="/account">My account</Link>
+          <Link to="/account" style={{ textDecoration: "none", color: "#000" }}>
+            My account
+          </Link>
         </MenuItem>
         <Divider />
         <MenuItem>
           <ListItemIcon></ListItemIcon>
           <LoginIcon sx={{ marginRight: "10px" }} />
-          <Link to="/login"> Sing in</Link>
+          <Link to="/login" style={{ textDecoration: "none", color: "#000" }}>
+            {" "}
+            Sing in
+          </Link>
         </MenuItem>
         <MenuItem>
           <ListItemIcon></ListItemIcon>
           <AppRegistrationIcon sx={{ marginRight: "10px" }} />
-          <Link to="/registration"> Sing up</Link>
+          <Link
+            to="/registration"
+            style={{ textDecoration: "none", color: "#000" }}
+          >
+            {" "}
+            Sing up
+          </Link>
         </MenuItem>
         <MenuItem>
           <ListItemIcon></ListItemIcon>
           <LogoutIcon sx={{ marginRight: "10px" }} />
-          <Link to="/">Logout</Link>
+          <Link to="/" style={{ textDecoration: "none", color: "#000" }}>
+            Logout
+          </Link>
         </MenuItem>
       </Menu>
     </React.Fragment>

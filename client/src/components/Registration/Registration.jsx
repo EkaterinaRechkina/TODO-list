@@ -12,6 +12,7 @@ export default function Registration() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
+          alignItems: "center",
         }}
         noValidate
         autoComplete="off"

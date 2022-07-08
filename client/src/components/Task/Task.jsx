@@ -12,6 +12,15 @@ import { Checkbox } from "@mui/material";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
+import { useDispatch } from "react-redux";
+import {
+  deleteTask,
+  editTask,
+  checkedTask,
+} from "../../Redux/actions/task.action";
+import { textAlign } from "@mui/system";
+import { useMediaQuery } from "@mui/material";
+
 const bull = (
   <Box
     component="span"
@@ -34,20 +43,34 @@ const style = {
   flexDirection: "column",
   gap: "20px",
 };
-export default function Task({ title, text }) {
-  const [state, setState] = useState(false);
+export default function Task({ id, title, text }) {
+  const dispatch = useDispatch();
+
+  const isActive = useMediaQuery("(max-width: 620px)");
+
+  const [newTitle, setNewTitle] = useState(title);
+  const [newText, setNewText] = useState(text);
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  function editHandler(event) {
-    event.preventDefault();
+  function deleteTaskT(id) {
+    dispatch(deleteTask(id));
+  }
+
+  function editHandler(id, newTitle, newText) {
+    dispatch(editTask(id, newTitle, newText));
+    handleClose();
+  }
+
+  function checkTask(id) {
+    dispatch(checkTask(id));
   }
 
   return (
     <>
-      <Card sx={{ minWidth: 550 }}>
+      <Card id={id} sx={isActive ? { minWidth: 350 } : { minWidth: 550 }}>
         <CardContent
           sx={{
             display: "flex",
@@ -69,13 +92,13 @@ export default function Task({ title, text }) {
           </div>
           <div>
             <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
-              <Checkbox />
+              <Checkbox onClick={() => checkTask(id)} />
               <Button sx={{ width: "24px", padding: 0, margin: 0 }}>
-                <EditIcon onClick={handleOpen} />
+                <EditIcon id={id} onClick={handleOpen} />
               </Button>
 
-              <Button sx={{ width: "24px", padding: 0, margin: 0 }}>
-                <DeleteIcon />
+              <Button id={id} sx={{ width: "24px", padding: 0, margin: 0 }}>
+                <DeleteIcon onClick={() => deleteTaskT(id)} />
               </Button>
             </CardActions>
           </div>
@@ -88,13 +111,25 @@ export default function Task({ title, text }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <TextField id="standard-basic" label="Title" variant="standard" />
           <TextField
+            onChange={(event) => setNewTitle(event.target.value)}
+            value={newTitle}
+            id="standard-basic"
+            label="Title"
+            variant="standard"
+          />
+          <TextField
+            onChange={(event) => setNewText(event.target.value)}
+            value={newText}
             id="standard-basic"
             label="Description"
             variant="standard"
           />
-          <Button size="small" type="submit" onSubmit={editHandler}>
+          <Button
+            id={id}
+            size="small"
+            onClick={() => editHandler(id, newTitle, newText)}
+          >
             Submit
           </Button>
           <Button size="small" onClick={handleClose}>

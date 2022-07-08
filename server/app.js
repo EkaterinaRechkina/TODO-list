@@ -45,24 +45,36 @@ app.post("/task", async (req, res) => {
   }
 });
 
-// app.get("/api/v1/cats", async (req, res) => {
-//   try {
-//     const response = await axios.get(
-//       `https://api.thecatapi.com/v1/images/search?limit=3&page=1&order=Desc`
-//     );
-//     const result = response.data.map((el) => ({ id: el.id, url: el.url }));
-//     cats = [...cats, ...result];
-
-//     res.json(result);
-//   } catch (err) {
-//     res.sendStatus(400);
-//   }
-// });
-
-app.get("/list/:id", (req, res) => {
+app.get("/task/:id", async (req, res) => {
   const { id } = req.params;
-  const oneTask = Task.findOne({ where: { id } });
+  const oneTask = await Task.findOne({ where: { id } });
   res.json(oneTask);
+});
+
+app.put("/task/:id", async (req, res) => {
+  const { id, title, description } = req.body;
+  console.log(id, title, description);
+  const task = await Task.update(
+    { title, text: description },
+    { where: { id } }
+  );
+  const currentTask = await Task.findOne({ where: { id } });
+  console.log(currentTask);
+  res.json(currentTask);
+});
+
+app.patch("/task/:id", async (req, res) => {
+  const { id, status } = req.body;
+  console.log(id, status);
+  const task = await Task.update({ status: true }, { where: { id } });
+  const checkedTask = await Task.findOne({ where: { id } });
+  res.json(checkedTask);
+});
+
+app.delete("/task/:id", async (req, res) => {
+  const { id } = req.params;
+  const deleteTask = await Task.destroy({ where: { id } });
+  res.json(deleteTask);
 });
 
 app.listen(PORT, () => {
