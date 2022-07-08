@@ -3,7 +3,9 @@ import { SET_TASK, ADD_TASK, EDIT_TASK, DEL_TASK, CHECK_TASK } from "../types";
 
 export const setTask = () => async (dispatch) => {
   try {
-    const result = await axios.get("http://localhost:3001/");
+    const result = await axios.get(`${process.env.REACT_APP_API_URL}`);
+    console.log(result);
+
     dispatch({
       type: SET_TASK,
       payload: result.data,
@@ -15,7 +17,7 @@ export const setTask = () => async (dispatch) => {
 
 export const addTask = (title, description) => async (dispatch) => {
   try {
-    const result = await axios.post("http://localhost:3001/task", {
+    const result = await axios.post(`${process.env.REACT_APP_API_URL}/task`, {
       title,
       description,
     });
@@ -31,7 +33,7 @@ export const addTask = (title, description) => async (dispatch) => {
 
 export const setTaskAllTasks = () => async (dispatch) => {
   try {
-    const result = await axios.get(`${process.env.REACT_APP_API_URL}`);
+    const result = await axios.get(`${process.env.REACT_APP_API_URL}/tasks`);
 
     dispatch({
       type: SET_TASK,
