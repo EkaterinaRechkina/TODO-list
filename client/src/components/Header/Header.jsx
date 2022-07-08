@@ -13,6 +13,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
+import "./Header.css";
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -35,15 +36,17 @@ export default function Header() {
           backgroundColor: "#1976d2",
           margin: 0,
           minHeight: "80px",
+          color: "#fff",
+          textDecoration: "none",
         }}
       >
         <Typography sx={{ minWidth: 100 }}>
-          <Link to="/" style={{ textDecoration: "none", color: "#fff" }}>
+          <Link to="/" style={{ color: "#fff", textDecoration: "none" }}>
             Home
           </Link>
         </Typography>
         <Typography sx={{ minWidth: 100 }}>
-          <Link to="/tasks" style={{ textDecoration: "none", color: "#fff" }}>
+          <Link to="/tasks" style={{ color: "#fff", textDecoration: "none" }}>
             Tasks
           </Link>
         </Typography>
@@ -99,7 +102,7 @@ export default function Header() {
       >
         <MenuItem>
           <Avatar />
-          <Link to="/account" style={{ textDecoration: "none", color: "#000" }}>
+          <Link to="/account" className="link">
             My account
           </Link>
         </MenuItem>
@@ -108,7 +111,6 @@ export default function Header() {
           <ListItemIcon></ListItemIcon>
           <LoginIcon sx={{ marginRight: "10px" }} />
           <Link to="/login" style={{ textDecoration: "none", color: "#000" }}>
-            {" "}
             Sing in
           </Link>
         </MenuItem>

@@ -12,7 +12,6 @@ export default function Login() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          alignItems: "center",
         }}
         noValidate
         autoComplete="off"

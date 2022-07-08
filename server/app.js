@@ -9,12 +9,12 @@ const path = require("path");
 
 app.use(
   cors({
-    // origin: "http://localhost:3000",
-    // credentials: true,
+    origin: "http://localhost:3000",
+    credentials: true,
   })
 );
 
-app.use(express.static(path.resolve(process.env.PWD, "..", "client", "build")));
+// app.use(express.static(path.resolve(process.env.PWD, "..", "client", "build")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -46,6 +46,20 @@ app.post("/task", async (req, res) => {
     return res.sendStatus(406);
   }
 });
+
+// app.get("/api/v1/cats", async (req, res) => {
+//   try {
+//     const response = await axios.get(
+//       `https://api.thecatapi.com/v1/images/search?limit=3&page=1&order=Desc`
+//     );
+//     const result = response.data.map((el) => ({ id: el.id, url: el.url }));
+//     cats = [...cats, ...result];
+
+//     res.json(result);
+//   } catch (err) {
+//     res.sendStatus(400);
+//   }
+// });
 
 app.get("/task/:id", async (req, res) => {
   const { id } = req.params;
