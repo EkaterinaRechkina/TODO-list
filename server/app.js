@@ -5,6 +5,7 @@ const axios = require("axios");
 const app = express();
 const { Task, User } = require("./db/models");
 const PORT = process.env.PORT ?? 3000;
+const path = require("path");
 
 app.use(
   cors({
@@ -13,6 +14,7 @@ app.use(
   })
 );
 
+app.use(express.static(path.resolve(process.env.PWD, "..", "client", "build")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

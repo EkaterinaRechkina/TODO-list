@@ -31,7 +31,7 @@ export const addTask = (title, description) => async (dispatch) => {
 
 export const setTaskAllTasks = () => async (dispatch) => {
   try {
-    const result = await axios.get("http://localhost:3001/tasks");
+    const result = await axios.get(`${process.env.REACT_APP_API_URL}`);
 
     dispatch({
       type: SET_TASK,
@@ -45,11 +45,14 @@ export const setTaskAllTasks = () => async (dispatch) => {
 export const editTask = (id, title, description) => async (dispatch) => {
   console.log("taskttttt", id, title, description);
   try {
-    const result = await axios.put(`http://localhost:3001/task/${id}`, {
-      id,
-      title,
-      description,
-    });
+    const result = await axios.put(
+      `${process.env.REACT_APP_API_URL}/task/${id}`,
+      {
+        id,
+        title,
+        description,
+      }
+    );
     console.log("result", result.data);
     dispatch({
       type: EDIT_TASK,
@@ -62,9 +65,12 @@ export const editTask = (id, title, description) => async (dispatch) => {
 
 export const deleteTask = (id) => async (dispatch) => {
   try {
-    const result = await axios.delete(`http://localhost:3001/task/${id}`, {
-      id,
-    });
+    const result = await axios.delete(
+      `${process.env.REACT_APP_API_URL}/task/${id}`,
+      {
+        id,
+      }
+    );
     console.log("result", result.data);
     dispatch({
       type: DEL_TASK,
@@ -77,9 +83,12 @@ export const deleteTask = (id) => async (dispatch) => {
 
 export const checkedTask = (id) => async (dispatch) => {
   try {
-    const result = await axios.patch(`http://localhost:3001/task/${id}`, {
-      id,
-    });
+    const result = await axios.patch(
+      `${process.env.REACT_APP_API_URL}/task/${id}`,
+      {
+        id,
+      }
+    );
     console.log("result", result.data);
     dispatch({
       type: CHECK_TASK,
