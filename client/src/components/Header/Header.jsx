@@ -17,12 +17,15 @@ import LoginIcon from "@mui/icons-material/Login";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
 import "./Header.css";
+import { logoutUser } from "../../Redux/actions/user.action";
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+  const dispatch = useDispatch();
 
   const isActive = useMediaQuery("(max-width: 620px)");
   const handleClick = (event) => {
@@ -31,6 +34,11 @@ export default function Header() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  function logout() {
+    console.log("logout");
+    dispatch(logoutUser());
+  }
+
   return (
     <React.Fragment>
       <Box
@@ -145,11 +153,10 @@ export default function Header() {
             to="/registration"
             style={{ textDecoration: "none", color: "#000" }}
           >
-            {" "}
             Sing up
           </Link>
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={logout}>
           <ListItemIcon></ListItemIcon>
           <LogoutIcon sx={{ marginRight: "10px" }} />
           <Link to="/" style={{ textDecoration: "none", color: "#000" }}>

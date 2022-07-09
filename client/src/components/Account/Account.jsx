@@ -11,8 +11,14 @@ import {
 
 import avatar from "../../img/ava2.png";
 import EditIcon from "@mui/icons-material/Edit";
+import { useSelector } from "react-redux";
+// import { useNavigate } from "react-router-dom";
 
 export default function Account() {
+  const name = useSelector((store) => store.users.name);
+
+  console.log("name", name);
+
   return (
     <Card
       sx={{
@@ -38,7 +44,7 @@ export default function Account() {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            User Name
+            User Name {name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             User email

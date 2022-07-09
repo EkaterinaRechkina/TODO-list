@@ -88,7 +88,7 @@ export default function Task({ id, title, text, status }) {
               variant="h5"
               component="div"
               sx={
-                status
+                !status
                   ? { textDecoration: "line-through", marginRight: "10px" }
                   : { marginRight: "10px", textDecoration: "none" }
               }
@@ -100,7 +100,7 @@ export default function Task({ id, title, text, status }) {
             <Typography
               variant="body2"
               sx={
-                status
+                !status
                   ? { textDecoration: "line-through", marginRight: "10px" }
                   : { marginRight: "10px", textDecoration: "none" }
               }
@@ -113,7 +113,7 @@ export default function Task({ id, title, text, status }) {
               <Checkbox onClick={() => checkTask(id)} />
               <Button
                 sx={{ width: "24px", padding: 0, margin: 0 }}
-                disabled={Boolean(status)}
+                disabled={Boolean(!status)}
               >
                 <EditIcon id={id} onClick={handleOpen} />
               </Button>

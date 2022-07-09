@@ -32,10 +32,3 @@ export function taskReducer(state = [], action) {
     }
   }
 }
-
-// case CHECK_TASK:
-// const newState = [...state].map(el => el.id === action.payload.id ? action.payload : el)
-// return newState
-// case DEL_TASK:
-// const result = state.filter(task => task.id !== action.payload)
-// return result
