@@ -1,23 +1,30 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Tooltip from "@mui/material/Tooltip";
+import {
+  Box,
+  Menu,
+  MenuItem,
+  Divider,
+  Typography,
+  Tooltip,
+  useMediaQuery,
+  Avatar,
+  ListItemIcon,
+  IconButton,
+} from "@mui/material";
+
 import LogoutIcon from "@mui/icons-material/Logout";
 import LoginIcon from "@mui/icons-material/Login";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
+
 import "./Header.css";
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+  const isActive = useMediaQuery("(max-width: 620px)");
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -27,18 +34,35 @@ export default function Header() {
   return (
     <React.Fragment>
       <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          textAlign: "center",
-          justifyContent: "space-around",
-          marginTop: "10px",
-          backgroundColor: "#1976d2",
-          margin: 0,
-          minHeight: "80px",
-          color: "#fff",
-          textDecoration: "none",
-        }}
+        sx={
+          isActive
+            ? {
+                display: "flex",
+                alignItems: "center",
+                textAlign: "center",
+                justifyContent: "flex-end",
+                marginTop: "10px",
+                backgroundColor: "#1976d2",
+                margin: 0,
+                minHeight: "80px",
+                color: "#fff",
+                textDecoration: "none",
+                padding: "0 30px",
+              }
+            : {
+                display: "flex",
+                alignItems: "center",
+                textAlign: "center",
+                justifyContent: "flex-end",
+                marginTop: "10px",
+                backgroundColor: "#1976d2",
+                margin: 0,
+                minHeight: "80px",
+                color: "#fff",
+                textDecoration: "none",
+                padding: "0 100px",
+              }
+        }
       >
         <Typography sx={{ minWidth: 100 }}>
           <Link to="/" style={{ color: "#fff", textDecoration: "none" }}>
@@ -102,7 +126,7 @@ export default function Header() {
       >
         <MenuItem>
           <Avatar />
-          <Link to="/account" className="link">
+          <Link to="/account" style={{ textDecoration: "none", color: "#000" }}>
             My account
           </Link>
         </MenuItem>

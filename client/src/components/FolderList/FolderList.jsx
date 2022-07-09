@@ -1,7 +1,5 @@
 import * as React from "react";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
+import { List, ListItem, ListItemText } from "@mui/material";
 import Task from "../Task/Task";
 import { useDispatch, useSelector } from "react-redux";
 import { setTask } from "../../Redux/actions/task.action";

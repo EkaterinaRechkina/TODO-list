@@ -1,7 +1,5 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import { Button } from "@mui/material";
+import { Box, TextField, Button } from "@mui/material";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTask } from "../../Redux/actions/task.action";

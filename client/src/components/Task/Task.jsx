@@ -1,17 +1,23 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import {
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  Typography,
+  Checkbox,
+  Modal,
+  TextField,
+  useMediaQuery,
+} from "@mui/material";
+
 import { AccessAlarm, ThreeDRotation } from "@mui/icons-material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { Checkbox } from "@mui/material";
+
 import { useState } from "react";
-import Modal from "@mui/material/Modal";
-import { TextField } from "@mui/material";
+
 import { useDispatch } from "react-redux";
 import {
   deleteTask,
@@ -19,7 +25,6 @@ import {
   checkedTask,
 } from "../../Redux/actions/task.action";
 import { textAlign } from "@mui/system";
-import { useMediaQuery } from "@mui/material";
 
 const bull = (
   <Box
