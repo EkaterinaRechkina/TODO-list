@@ -6,3 +6,5 @@ Used
 3. JS
 4. Express
 5. MUI
+6. Sessions 
+7. Cookie
