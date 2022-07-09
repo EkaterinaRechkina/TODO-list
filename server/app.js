@@ -9,26 +9,25 @@ const path = require("path");
 const session = require("express-session");
 const FileStore = require("session-file-store")(session);
 const bcrypt = require("bcrypt");
-const cookieParser = require("cookie-parser");
 
 const saltRounds = 10;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(cookieParser());
+
 const sessionConfig = {
   store: new FileStore(), // хранилище сессий
   key: process.env.COOKIE_NAME, // ключ куки
   secret: process.env.SECRET, // шифрование id сессии
   resave: false, // пересохранение сессии (когда что-то поменяли - false)
   saveUninitialized: false, // сохраняем только зарегестрированных
-  // httpOnly: true, // нельзя изменить куки с фронта
-  cookie: { expires: 24 * 60 * 60e3, httpOnly: false },
+  httpOnly: true, // нельзя изменить куки с фронта
+  cookie: { expires: 24 * 60 * 60e3 },
 };
 app.use(session(sessionConfig));
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:3001"],
+    origin: "http://localhost:3000",
     credentials: true,
   })
 );
@@ -83,13 +82,14 @@ app.put("/task/:id", async (req, res) => {
 });
 
 app.patch("/task/:id", async (req, res) => {
-  console.log(req.params);
+  console.log("checkbox", req.params);
   const { id } = req.params;
   const checkedTask = await Task.findOne({ where: { id } });
   const taskStatus = checkedTask.status;
   const task = await Task.update({ status: !taskStatus }, { where: { id } });
-  console.log(checkedTask);
-  console.log(taskStatus);
+  // console.log("ch", checkedTask);
+  console.log("task", taskStatus);
+  console.log("taskrevert", !taskStatus);
   // res.json(checkedTask);
   res.sendStatus(200);
 });
@@ -102,12 +102,9 @@ app.delete("/task/:id", async (req, res) => {
 
 app.post("/registration", async (req, res) => {
   const { name, email, password } = req.body;
-  console.log(name, email, password);
 
   try {
     const user = await User.findOne({ where: { email } });
-
-    console.log("user", user);
 
     if (user) {
       console.log("already exist");
@@ -134,7 +131,7 @@ app.post("/registration", async (req, res) => {
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  console.log("login", email, password);
+
   try {
     const userLogin = await User.findOne({
       where: { email },
@@ -161,7 +158,6 @@ app.post("/login", async (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
-  console.log("session", req.session);
   req.session.destroy((error) => {
     if (error) console.log(error);
   });

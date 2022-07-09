@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import { TextField, Button, Box } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { regUser } from "../../Redux/actions/user.action";
+import { useNavigate } from "react-router-dom";
 
 export default function Registration() {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function userRegistration(name, email, password) {
-    console.log("register");
     dispatch(regUser(name, email, password));
   }
 
-  console.log("user", userName, userEmail, userPassword);
+  function navigateUser() {
+    navigate("/");
+  }
 
   return (
     <div>
@@ -55,17 +58,18 @@ export default function Registration() {
           label="password"
           type="password"
         />
-
-        <Button
-          onClick={() => userRegistration(userName, userEmail, userPassword)}
-          sx={{
-            marginTop: "20px",
-            maxWidth: "220px",
-          }}
-          variant="contained"
-        >
-          Submit
-        </Button>
+        <div onClick={navigateUser}>
+          <Button
+            onClick={() => userRegistration(userName, userEmail, userPassword)}
+            sx={{
+              marginTop: "20px",
+              maxWidth: "220px",
+            }}
+            variant="contained"
+          >
+            Submit
+          </Button>
+        </div>
       </Box>
     </div>
   );

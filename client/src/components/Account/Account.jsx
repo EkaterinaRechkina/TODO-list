@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 // import { useNavigate } from "react-router-dom";
 
 export default function Account() {
-  const name = useSelector((store) => store.users.name);
+  const { name } = useSelector((store) => store.users);
 
   console.log("name", name);
 
@@ -44,10 +44,10 @@ export default function Account() {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            User Name {name}
+            Name: {name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            User email
+            Email:
           </Typography>
           <Typography variant="body2" color="text.secondary">
             About user

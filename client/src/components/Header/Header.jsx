@@ -17,14 +17,14 @@ import LoginIcon from "@mui/icons-material/Login";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./Header.css";
 import { logoutUser } from "../../Redux/actions/user.action";
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-
+  const name = useSelector((store) => store.users.name);
   const dispatch = useDispatch();
 
   const isActive = useMediaQuery("(max-width: 620px)");
@@ -82,6 +82,7 @@ export default function Header() {
             Tasks
           </Link>
         </Typography>
+
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}
@@ -135,7 +136,7 @@ export default function Header() {
         <MenuItem>
           <Avatar />
           <Link to="/account" style={{ textDecoration: "none", color: "#000" }}>
-            My account
+            My account {name}
           </Link>
         </MenuItem>
         <Divider />
