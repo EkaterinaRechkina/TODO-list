@@ -22,7 +22,10 @@ export function taskReducer(state = [], action) {
     }
     //что возвращаем?
     case CHECK_TASK: {
-      return state;
+      const result = state.map((el) =>
+        el.id === action.payload ? { ...el, status: !el.status } : { ...el }
+      );
+      return result;
     }
     default: {
       return state;

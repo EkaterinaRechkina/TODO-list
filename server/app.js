@@ -80,11 +80,15 @@ app.put("/task/:id", async (req, res) => {
 });
 
 app.patch("/task/:id", async (req, res) => {
-  const { id, status } = req.body;
-  console.log(id, status);
-  const task = await Task.update({ status: true }, { where: { id } });
+  console.log(req.params);
+  const { id } = req.params;
   const checkedTask = await Task.findOne({ where: { id } });
-  res.json(checkedTask);
+  const taskStatus = checkedTask.status;
+  const task = await Task.update({ status: !taskStatus }, { where: { id } });
+  console.log(checkedTask);
+  console.log(taskStatus);
+  // res.json(checkedTask);
+  res.sendStatus(200);
 });
 
 app.delete("/task/:id", async (req, res) => {

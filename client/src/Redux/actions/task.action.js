@@ -78,10 +78,9 @@ export const deleteTask = (id) => async (dispatch) => {
 };
 
 export const checkedTask = (id) => async (dispatch) => {
+  console.log("--------", id);
   try {
-    const result = await axios.patch(`http://localhost:3001/task/${id}`, {
-      id,
-    });
+    const result = await axios.patch(`http://localhost:3001/task/${id}`);
     console.log("result", result.data);
     dispatch({
       type: CHECK_TASK,

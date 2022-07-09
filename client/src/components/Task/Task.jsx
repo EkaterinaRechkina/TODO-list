@@ -12,7 +12,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 
-import { AccessAlarm, ThreeDRotation } from "@mui/icons-material";
+import { AccessAlarm, PlayDisabled, ThreeDRotation } from "@mui/icons-material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
@@ -48,7 +48,7 @@ const style = {
   flexDirection: "column",
   gap: "20px",
 };
-export default function Task({ id, title, text }) {
+export default function Task({ id, title, text, status }) {
   const dispatch = useDispatch();
 
   const isActive = useMediaQuery("(max-width: 620px)");
@@ -70,7 +70,7 @@ export default function Task({ id, title, text }) {
   }
 
   function checkTask(id) {
-    dispatch(checkTask(id));
+    dispatch(checkedTask(id));
   }
 
   return (
@@ -87,18 +87,34 @@ export default function Task({ id, title, text }) {
             <Typography
               variant="h5"
               component="div"
-              sx={{ marginRight: "10px" }}
+              sx={
+                status
+                  ? { textDecoration: "line-through", marginRight: "10px" }
+                  : { marginRight: "10px", textDecoration: "none" }
+              }
             >
               {title}
             </Typography>
           </div>
           <div>
-            <Typography variant="body2">{text}</Typography>
+            <Typography
+              variant="body2"
+              sx={
+                status
+                  ? { textDecoration: "line-through", marginRight: "10px" }
+                  : { marginRight: "10px", textDecoration: "none" }
+              }
+            >
+              {text}
+            </Typography>
           </div>
           <div>
             <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
               <Checkbox onClick={() => checkTask(id)} />
-              <Button sx={{ width: "24px", padding: 0, margin: 0 }}>
+              <Button
+                sx={{ width: "24px", padding: 0, margin: 0 }}
+                disabled={Boolean(status)}
+              >
                 <EditIcon id={id} onClick={handleOpen} />
               </Button>
 
