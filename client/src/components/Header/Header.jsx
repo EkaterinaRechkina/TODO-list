@@ -24,7 +24,7 @@ import { logoutUser } from "../../Redux/actions/user.action";
 export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const name = useSelector((store) => store.users.name);
+  const name = localStorage.getItem("name");
   const dispatch = useDispatch();
 
   const isActive = useMediaQuery("(max-width: 620px)");
@@ -35,7 +35,6 @@ export default function Header() {
     setAnchorEl(null);
   };
   function logout() {
-    console.log("logout");
     dispatch(logoutUser());
   }
 
@@ -136,34 +135,42 @@ export default function Header() {
         <MenuItem>
           <Avatar />
           <Link to="/account" style={{ textDecoration: "none", color: "#000" }}>
-            My account {name}
+            My account
           </Link>
         </MenuItem>
         <Divider />
-        <MenuItem>
-          <ListItemIcon></ListItemIcon>
-          <LoginIcon sx={{ marginRight: "10px" }} />
-          <Link to="/login" style={{ textDecoration: "none", color: "#000" }}>
-            Sing in
-          </Link>
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon></ListItemIcon>
-          <AppRegistrationIcon sx={{ marginRight: "10px" }} />
-          <Link
-            to="/registration"
-            style={{ textDecoration: "none", color: "#000" }}
-          >
-            Sing up
-          </Link>
-        </MenuItem>
-        <MenuItem onClick={logout}>
-          <ListItemIcon></ListItemIcon>
-          <LogoutIcon sx={{ marginRight: "10px" }} />
-          <Link to="/" style={{ textDecoration: "none", color: "#000" }}>
-            Logout
-          </Link>
-        </MenuItem>
+        {!name ? (
+          <>
+            <MenuItem>
+              <ListItemIcon></ListItemIcon>
+              <LoginIcon sx={{ marginRight: "10px" }} />
+              <Link
+                to="/login"
+                style={{ textDecoration: "none", color: "#000" }}
+              >
+                Sing in
+              </Link>
+            </MenuItem>{" "}
+            <MenuItem>
+              <ListItemIcon></ListItemIcon>
+              <AppRegistrationIcon sx={{ marginRight: "10px" }} />
+              <Link
+                to="/registration"
+                style={{ textDecoration: "none", color: "#000" }}
+              >
+                Sing up
+              </Link>
+            </MenuItem>
+          </>
+        ) : (
+          <MenuItem onClick={logout}>
+            <ListItemIcon></ListItemIcon>
+            <LogoutIcon sx={{ marginRight: "10px" }} />
+            <Link to="/" style={{ textDecoration: "none", color: "#000" }}>
+              Logout
+            </Link>
+          </MenuItem>
+        )}
       </Menu>
     </React.Fragment>
   );

@@ -35,26 +35,52 @@ app.use(
 // app.use(express.static(path.resolve(process.env.PWD, "..", "client", "build")));
 
 app.get("/", async (req, res) => {
-  const allTasks = await Task.findAll({
-    limit: 5,
-    order: [["id", "DESC"]],
-  });
-  res.json(allTasks);
+  const id = req.session.userId;
+  if (id) {
+    // console.log("id40", id);
+    const allTasks = await Task.findAll({
+      where: { user_id: id },
+      limit: 5,
+      order: [["id", "DESC"]],
+    });
+    res.json(allTasks);
+  }
+  res.status(200).end();
 });
 
 app.get("/tasks", async (req, res) => {
-  const tasks = await Task.findAll({
-    order: [["id", "DESC"]],
-  });
-  res.json(tasks);
+  const id = req.session.userId;
+
+  console.log("idtask", id);
+  if (id) {
+    const tasks = await Task.findAll({
+      where: { user_id: id },
+      order: [["id", "DESC"]],
+    });
+    res.json(tasks);
+  }
+  res.status(200).end();
 });
 
 app.post("/task", async (req, res) => {
   console.log(req.body);
   try {
+    const userId = req.session.userId;
+    console.log("userId", userId);
+    console.log(req.session);
+    const user = await User.findOne({
+      where: { id: userId },
+    });
+    const user_id = user.id;
+    // console.log("userid", user_id);
     const { id, title, description } = req.body;
 
-    const newElement = await Task.create({ id, title, text: description });
+    const newElement = await Task.create({
+      id,
+      title,
+      text: description,
+      user_id,
+    });
 
     return res.status(201).json(newElement);
   } catch (err) {
@@ -71,7 +97,8 @@ app.get("/task/:id", async (req, res) => {
 
 app.put("/task/:id", async (req, res) => {
   const { id, title, description } = req.body;
-  console.log(id, title, description);
+  // console.log(id, title, description);
+
   const task = await Task.update(
     { title, text: description },
     { where: { id } }
@@ -121,8 +148,11 @@ app.post("/registration", async (req, res) => {
 
     req.session.userId = newUser.id;
     req.session.name = newUser.name;
+    req.session.email = newUser.email;
 
-    res.json({ id: newUser.id, name: newUser.name });
+    // console.log("newUser", newUser);
+
+    res.json({ id: newUser.id, name: newUser.name, email: newUser.email });
   } catch (err) {
     console.log(err);
     res.sendStatus(406);
@@ -149,8 +179,14 @@ app.post("/login", async (req, res) => {
 
     req.session.userId = userLogin.id;
     req.session.name = userLogin.name;
+    req.session.email = userLogin.email;
+    // console.log("test", req.session.userId);
 
-    res.json({ id: userLogin.id, name: userLogin.name });
+    res.json({
+      id: userLogin.id,
+      name: userLogin.name,
+      email: userLogin.email,
+    });
   } catch (err) {
     console.log(err);
     res.sendStatus(406);

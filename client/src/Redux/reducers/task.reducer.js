@@ -2,7 +2,7 @@ import { SET_TASK, ADD_TASK, EDIT_TASK, DEL_TASK, CHECK_TASK } from "../types";
 
 export function taskReducer(state = [], action) {
   const { type } = action;
-  console.log("action", action.payload);
+
   switch (type) {
     case SET_TASK: {
       return action.payload;
@@ -20,7 +20,7 @@ export function taskReducer(state = [], action) {
       const result = state.filter((task) => task.id !== action.payload);
       return result;
     }
-    //что возвращаем?
+
     case CHECK_TASK: {
       const result = state.map((el) =>
         el.id === action.payload ? { ...el, status: !el.status } : { ...el }

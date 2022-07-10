@@ -13,11 +13,8 @@ export default function Login() {
   const dispatch = useDispatch();
 
   function userLogin(email, password) {
-    console.log("login");
     dispatch(logUser(email, password));
   }
-
-  console.log("log", logEmail, logPassword);
 
   function navigateUser() {
     navigate("/");

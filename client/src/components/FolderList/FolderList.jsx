@@ -11,8 +11,6 @@ export default function FolderList() {
 
   const tasks = useSelector((store) => store.tasks);
 
-  console.log(tasks);
-
   useEffect(() => {
     dispatch(setTask());
   }, []);

@@ -11,13 +11,10 @@ import {
 
 import avatar from "../../img/ava2.png";
 import EditIcon from "@mui/icons-material/Edit";
-import { useSelector } from "react-redux";
-// import { useNavigate } from "react-router-dom";
 
 export default function Account() {
-  const { name } = useSelector((store) => store.users);
-
-  console.log("name", name);
+  const name = localStorage.getItem("name");
+  const email = localStorage.getItem("email");
 
   return (
     <Card
@@ -47,11 +44,11 @@ export default function Account() {
             Name: {name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Email:
+            Email: {email}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          {/* <Typography variant="body2" color="text.secondary">
             About user
-          </Typography>
+          </Typography> */}
         </CardContent>
       </CardActionArea>
     </Card>

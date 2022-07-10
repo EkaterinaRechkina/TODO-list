@@ -16,7 +16,6 @@ export default function Form() {
 
   function submitHandler(event) {
     event.preventDefault();
-    console.log("test");
     dispatch(addTask(title, description));
 
     // setTasks({ title: "", description: "" });
@@ -24,8 +23,6 @@ export default function Form() {
     setDescription("");
   }
 
-  console.log(title);
-  console.log(description);
   return (
     <Box
       onSubmit={submitHandler}
