@@ -21,3 +21,6 @@ sessions/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.sequelizerc
+.eslintrc.js
