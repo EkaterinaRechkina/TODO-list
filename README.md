@@ -16,7 +16,8 @@ Main
 ![Screenshot from 2022-07-10 15-54-24](https://user-images.githubusercontent.com/73222009/178145875-c8c13501-ef10-4c75-9f19-89f43c4ee700.png)
 Registration  
 
-![Screenshot from 2022-07-10 16-01-19](https://user-images.githubusercontent.com/73222009/178145949-cf50028f-ab16-40a0-8297-113bd856cba4.png)
+![Screenshot from 2022-07-10 16-01-19](https://user-images.githubusercontent.com/73222009/178145949-cf50028f-ab16-40a0-8297-113bd856cba4.png)  
+
 Login  
 
 ![Screenshot from 2022-07-10 15-54-45](https://user-images.githubusercontent.com/73222009/178145876-5970760d-ad24-494b-b0fa-fa7ec7a5fc16.png)
