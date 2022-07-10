@@ -13,7 +13,9 @@ Used
 
 Main  
 
-![Screenshot from 2022-07-10 15-54-24](https://user-images.githubusercontent.com/73222009/178145875-c8c13501-ef10-4c75-9f19-89f43c4ee700.png)
+![Screenshot from 2022-07-10 16-11-03](https://user-images.githubusercontent.com/73222009/178146295-8d6d77a4-3322-41a7-8714-39c42365084f.png)
+
+
 Registration  
 
 ![Screenshot from 2022-07-10 16-01-19](https://user-images.githubusercontent.com/73222009/178145949-cf50028f-ab16-40a0-8297-113bd856cba4.png)  
