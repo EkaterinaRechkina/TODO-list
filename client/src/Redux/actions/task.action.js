@@ -3,7 +3,7 @@ import { SET_TASK, ADD_TASK, EDIT_TASK, DEL_TASK, CHECK_TASK } from "../types";
 
 export const setTask = () => async (dispatch) => {
   try {
-    const result = await axios.get("http://localhost:3001/", {
+    const result = await axios.get(`http://localhost:3001/`, {
       withCredentials: true,
     });
 
