@@ -148,7 +148,7 @@ export default function Header() {
                 to="/login"
                 style={{ textDecoration: "none", color: "#000" }}
               >
-                Sing in
+                Sign in
               </Link>
             </MenuItem>{" "}
             <MenuItem>
@@ -158,7 +158,7 @@ export default function Header() {
                 to="/registration"
                 style={{ textDecoration: "none", color: "#000" }}
               >
-                Sing up
+                Sign up
               </Link>
             </MenuItem>
           </>
