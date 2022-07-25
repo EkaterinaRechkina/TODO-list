@@ -1,10 +1,9 @@
 import * as React from "react";
-import { List, ListItem, ListItemText } from "@mui/material";
+import { List, ListItem } from "@mui/material";
 import Task from "../Task/Task";
 import { useDispatch, useSelector } from "react-redux";
 import { setTask } from "../../Redux/actions/task.action";
-import { useEffect, useState } from "react";
-import store from "../../Redux/store";
+import { useEffect } from "react";
 
 export default function FolderList() {
   const dispatch = useDispatch();
@@ -13,7 +12,7 @@ export default function FolderList() {
 
   useEffect(() => {
     dispatch(setTask());
-  }, []);
+  }, [dispatch]);
 
   return (
     <List

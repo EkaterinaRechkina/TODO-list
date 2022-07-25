@@ -3,7 +3,6 @@ import { taskReducer } from "./reducers/task.reducer";
 import { userReducer } from "./reducers/user.reducer";
 
 import createSagaMiddleware from "redux-saga";
-import rootSaga from "./sagas/root.saga";
 
 const sagaMiddleware = createSagaMiddleware();
 

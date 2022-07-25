@@ -4,7 +4,7 @@ import { LOGOUT_USER, LOG_USER, REG_USER } from "../types";
 export const regUser = (name, email, password) => async (dispatch) => {
   try {
     const result = await axios.post(
-      "http://localhost:3001/registration",
+      "${process.env.REACT_APP_API_URL}/registration",
       {
         name,
         email,
@@ -27,7 +27,7 @@ export const regUser = (name, email, password) => async (dispatch) => {
 export const logUser = (email, password) => async (dispatch) => {
   try {
     const result = await axios.post(
-      `http://localhost:3001/login`,
+      `${process.env.REACT_APP_API_URL}/login`,
       { email, password },
       { withCredentials: true }
     );
@@ -45,7 +45,7 @@ export const logUser = (email, password) => async (dispatch) => {
 export const logoutUser = () => async (dispatch) => {
   try {
     const result = await axios.post(
-      `http://localhost:3001/logout`,
+      `${process.env.REACT_APP_API_URL}/logout`,
       {},
       { withCredentials: true }
     );

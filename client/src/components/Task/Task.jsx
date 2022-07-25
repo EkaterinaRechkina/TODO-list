@@ -12,7 +12,6 @@ import {
   useMediaQuery,
 } from "@mui/material";
 
-import { AccessAlarm, PlayDisabled, ThreeDRotation } from "@mui/icons-material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
@@ -24,16 +23,7 @@ import {
   editTask,
   checkedTask,
 } from "../../Redux/actions/task.action";
-import { textAlign } from "@mui/system";
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
-);
 const style = {
   position: "absolute",
   top: "50%",

@@ -4,12 +4,9 @@ import {
   CardContent,
   CardMedia,
   Typography,
-  Button,
   CardActionArea,
-  CardActions,
 } from "@mui/material";
 
-import avatar from "../../img/ava2.png";
 import EditIcon from "@mui/icons-material/Edit";
 
 export default function Account() {

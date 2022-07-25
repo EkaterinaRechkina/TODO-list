@@ -13,7 +13,7 @@ export function taskReducer(state = [], action) {
     }
     case EDIT_TASK: {
       return state.map((el) =>
-        el.id == action.payload.id ? action.payload : el
+        el.id === action.payload.id ? action.payload : el
       );
     }
     case DEL_TASK: {
