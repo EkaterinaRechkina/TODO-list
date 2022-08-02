@@ -4,7 +4,7 @@ import { LOGOUT_USER, LOG_USER, REG_USER } from "../types";
 export const regUser = (name, email, password) => async (dispatch) => {
   try {
     const result = await axios.post(
-      "${process.env.REACT_APP_API_URL}/registration",
+      `${process.env.REACT_APP_API_URL}/registration`,
       {
         name,
         email,
