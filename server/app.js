@@ -16,12 +16,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const sessionConfig = {
-  store: new FileStore(), // хранилище сессий
-  key: process.env.COOKIE_NAME, // ключ куки
-  secret: process.env.SECRET, // шифрование id сессии
-  resave: false, // пересохранение сессии (когда что-то поменяли - false)
-  saveUninitialized: false, // сохраняем только зарегестрированных
-  httpOnly: true, // нельзя изменить куки с фронта
+  store: new FileStore(),
+  key: process.env.COOKIE_NAME, 
+  secret: process.env.SECRET, 
+  resave: false, 
+  saveUninitialized: false, 
+  httpOnly: true,
   cookie: { expires: 24 * 60 * 60e3 },
 };
 app.use(session(sessionConfig));
@@ -32,7 +32,7 @@ app.use(
   })
 );
 
-// app.use(express.static(path.resolve(process.env.PWD, "..", "client", "build")));
+
 
 app.get("/", async (req, res) => {
   const id = req.session.userId;
@@ -72,7 +72,7 @@ app.post("/task", async (req, res) => {
       where: { id: userId },
     });
     const user_id = user.id;
-    // console.log("userid", user_id);
+  
     const { id, title, description } = req.body;
 
     const newElement = await Task.create({
@@ -150,7 +150,7 @@ app.post("/registration", async (req, res) => {
     req.session.name = newUser.name;
     req.session.email = newUser.email;
 
-    // console.log("newUser", newUser);
+
 
     res.json({ id: newUser.id, name: newUser.name, email: newUser.email });
   } catch (err) {
