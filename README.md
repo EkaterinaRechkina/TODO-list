@@ -12,7 +12,7 @@ Used
 8. PostgreSQL
 9. Sequelize
 
-Main
+
 
 ## Add new task, editing, deleting, User profile
 
